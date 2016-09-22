@@ -17,26 +17,4 @@ chmod 755 sambamba
 unzip Trimmomatic-0.36.zip 
 ln -s Trimmomatic-0.36/trimmomatic-0.36.jar trimmomatic.jar
 
-### GEM
-#wget http://pathogenseq.lshtm.ac.uk/downloads/GEM-binaries-Linux-x86_64-core_i3-20130406-045632.tbz2 
-tar -xvf GEM-binaries-Linux-x86_64-core_i3-20130406-045632.tbz2 
-ln -s GEM-binaries-Linux-x86_64-core_i3-20130406-045632/bin/gem* .
-
-### BEDOPS
-#wget https://github.com/bedops/bedops/releases/download/v2.4.16/bedops_linux_x86_64-v2.4.16.tar.bz2
-tar -xvf bedops_linux_x86_64-v2.4.16.tar.bz2 
-mv bin/ bedops-bin
-ln -s bedops-bin/wig2bed .
-
-
-### Samtools
-tar -xvf samtools-1.3.1.tar.bz2
-cd samtools-1.3.1
-make
-cd ../
-
-### Bcftools 
-tar -xvf bcftools-1.3.1.tar.bz2
-cd bcftools-1.3.1
-make
 
