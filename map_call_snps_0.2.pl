@@ -33,12 +33,20 @@ if ($ARGV[0] eq "trim"){
 	my $sample = $ARGV[1];
 	my $threads = $ARGV[2];
 	trim($sample,$threads);	
-} elsif ($ARGV[0] eq "map"){
+} elsif ($ARGV[0] eq "bowtie"){
 	if (scalar @ARGV != 4){ print "\nmap_call_snps.pl map <sample> <ref> <threads>\n\n"; exit;}
 	my $sample = $ARGV[1];
 	my $ref = $ARGV[2];
 	my $threads = $ARGV[3];
 	bowtie($sample,$ref,$threads);
+
+} elsif ($ARGV[0] eq "bwa"){
+	if (scalar @ARGV != 4){ print "\nmap_call_snps.pl map <sample> <ref> <threads>\n\n"; exit;}
+	my $sample = $ARGV[1];
+	my $ref = $ARGV[2];
+	my $threads = $ARGV[3];
+	bwa($sample,$ref,$threads);
+
 } elsif ($ARGV[0] eq "samtools"){
 	if (scalar @ARGV != 3){ print "\nmap_call_snps.pl samtools <sample> <ref>\n\n"; exit;}
 	my $sample = $ARGV[1];
