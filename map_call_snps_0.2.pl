@@ -91,7 +91,7 @@ sub bowtie{
 	my $ref = $_[1];
 	my $threads = $_[2];
 	
-	`bowtie $ref -1 ${sample}_1_trimmed_paired.txt -2 ${sample}_2_trimmed_paired.txt -S | samtools view -Sb - | samtools sort - $sample`;
+	`bowtie -p $threads -S $ref -1 ${sample}_1_trimmed_paired.txt -2 ${sample}_2_trimmed_paired.txt | samtools view -Sb - | samtools sort - $sample`;
 }
 #---------------------------------------------------------------------------
 #  Samtools SNPs
