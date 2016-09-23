@@ -106,7 +106,7 @@ sub bwa{
 	
 	`bwa aln -t $threads $ref ${sample}_1_trimmed_paired.txt > ${sample}_1.sai`;
 	`bwa aln -t $threads $ref ${sample}_2_trimmed_paired.txt > ${sample}_2.sai`;
-	`bwa sampe $ref ${sample}_1.sai ${sample}_2.sai ${sample}_1_trimmed_paired.txt ${sample}_2_trimmed_paired.txt > $sample.unsorted.sam`
+	`bwa sampe $ref ${sample}_1.sai ${sample}_2.sai ${sample}_1_trimmed_paired.txt ${sample}_2_trimmed_paired.txt > $sample.unsorted.sam`;
 	`samtools view -Sb $sample.unsorted.sam | samtools sort -m 600M - $sample`;
 
 
