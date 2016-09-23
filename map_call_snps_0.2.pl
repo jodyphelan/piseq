@@ -25,7 +25,7 @@ use List::Util 'max';
 use Cwd;
 use Cwd 'abs_path';
 
-if (scalar @ARGV == 0){ print "\n################# map_call_snps.pl ################\n\n\ttrim - trim reads\n\tmap - map a sample with reads\n\tsamtools - call variants using samtools\n\tcoverage - create coverage file\n\tsamtools_coverage - create coverage file using samtools\n\tall - perform whole mapping pipeline\n\n################################################### \n\n"; exit;}
+if (scalar @ARGV == 0){ print "\n################# map_call_snps.pl ################\n\n\ttrim - trim reads\n\tbowtie - map a sample with BOWTIE\n\tbwa - map a sample with BWA\n\tsamtools - call variants using samtools\n\tcoverage - create coverage file\n\tall - perform whole mapping pipeline\n\n################################################### \n\n"; exit;}
 
 
 if ($ARGV[0] eq "trim"){
@@ -53,12 +53,6 @@ if ($ARGV[0] eq "trim"){
 	my $ref = $ARGV[2];
 	samtools($sample,$ref);
 } elsif ($ARGV[0] eq "coverage"){
-	if (scalar @ARGV != 4){ print "\nmap_call_snps.pl coverage <sample> <ref> <threads>\n\n"; exit;}
-	my $sample = $ARGV[1];
-	my $ref = $ARGV[2];
-	my $threads = $ARGV[3];
-	extract_cov($sample,$ref,$threads);
-} elsif ($ARGV[0] eq "samtools_coverage"){
 	if (scalar @ARGV != 3){ print "\nmap_call_snps.pl samtools_coverage <sample> <ref>\n\n"; exit;}
 	my $sample = $ARGV[1];
 	my $ref = $ARGV[2];
