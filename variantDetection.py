@@ -35,7 +35,8 @@ def samtoolsCall(args):
     refFile = args.ref
     vcfFile = args.sample + ".vcf.gz"
     bamFile = args.sample + ".bam"
-    os.system("samtools mpileup -ugf %s %s | bcftools call -vmO z -o %s" % (refFile,bamFile,vcfFile))
+    ploidy = args.ploidy
+    os.system("samtools mpileup -ugf %s %s | bcftools call --ploidy %s -vmO z -o %s" % (refFile,bamFile,ploidy,vcfFile))
 
 
 
@@ -53,6 +54,7 @@ parser_bwa.set_defaults(func=bwa)
 parser_vcf = subparsers.add_parser('vcf', help='Use samtools to call variants',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser_vcf.add_argument('ref',help='Reference')
 parser_vcf.add_argument('sample',help='Sample name')
+parser_vcf.add_argument('--ploidy',default=1,help='Ploidy')
 parser_vcf.set_defaults(func=samtoolsCall)
 
 parser_trim = subparsers.add_parser('trim', help='Use trimmomatic to trim reads',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
