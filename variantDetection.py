@@ -38,6 +38,10 @@ def samtoolsCall(args):
     ploidy = args.ploidy
     os.system("samtools mpileup -ugf %s %s | bcftools call --ploidy %s -vmO z -o %s" % (refFile,bamFile,ploidy,vcfFile))
 
+def pipeline(args):
+    trim(args)
+    bwa(args)
+    samtoolsCall(args)
 
 
 parser = argparse.ArgumentParser(description='Next-generation sequencing processing pipeline for the rasberry pi',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -62,6 +66,14 @@ parser_trim.add_argument('-nt','--threads', type=int, default='1', help='Number 
 parser_trim.add_argument('sample',help='Sample name')
 parser_trim.set_defaults(func=trim)
 
+parser_all = subparsers.add_parser('all', help='Use trimmomatic to trim reads',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser_all.add_argument('ref',help='Reference')
+parser_all.add_argument('-nt','--threads', type=int, default='1', help='Number of threads')
+parser_all.add_argument('sample',help='Sample name')
+parser_all.add_argument('-f1',help='Forward fastq')
+parser_all.add_argument('-f2',help='Reverse fastq')
+parser_all.add_argument('--ploidy',default=1,help='Ploidy')
+parser_all.set_defaults(func=pipeline)
 
 args = parser.parse_args()
 print(args)
