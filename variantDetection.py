@@ -7,8 +7,8 @@ scriptDir = os.path.dirname(os.path.realpath(__file__))
 def trim(args):
     sample = args.sample
     threads = args.threads
-    fastq1File = "fastq/" + sample + "_1.fastq"
-    fastq2File = "fastq/" + sample + "_2.fastq"
+    fastq1File = "fastq/" + sample + "_1.fastq.gz"
+    fastq2File = "fastq/" + sample + "_2.fastq.gz"
     os.system("java -jar %s/trimmomatic.jar PE -threads %s -phred33 %s %s %s_1_trimmed_paired.txt %s_1_trimmed_unpaired.txt %s_2_trimmed_paired.txt %s_2_trimmed_unpaired.txt LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36" % (scriptDir,threads,fastq1File,fastq2File,sample,sample,sample,sample))
 
 def bwa(args):
