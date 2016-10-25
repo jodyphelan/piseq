@@ -42,12 +42,13 @@ def asmbl(args):
     bamFile = args.sample + ".bam"
     fastaFile = args.sample + ".fasta"
     os.system("samtools fasta %s > %s" % (bamFile,fastaFile))
-    os.system("minia 32 3 4000000 %s" % args.sample)
+    os.system("minia %s 32 3 4000000 %s" % (fastaFile,args.sample))
 
 def pipeline(args):
     trim(args)
     bwa(args)
     samtoolsCall(args)
+    asmbl(args)
 
 
 parser = argparse.ArgumentParser(description='Next-generation sequencing processing pipeline for the rasberry pi',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
