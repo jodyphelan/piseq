@@ -38,6 +38,12 @@ def samtoolsCall(args):
     ploidy = args.ploidy
     os.system("samtools mpileup -ugf %s %s | bcftools call --ploidy %s -vmO z -o %s" % (refFile,bamFile,ploidy,vcfFile))
 
+def asmbl(args):
+    bamFile = args.sample + ".bam"
+    fastaFile = args.sample + ".fasta"
+    os.system("samtools fasta %s > %s" % (bamFile,fastaFile))
+    os.system("minia 32 3 4000000 %s" % args.sample)
+
 def pipeline(args):
     trim(args)
     bwa(args)
@@ -65,6 +71,10 @@ parser_trim = subparsers.add_parser('trim', help='Use trimmomatic to trim reads'
 parser_trim.add_argument('-nt','--threads', type=int, default='1', help='Number of threads')
 parser_trim.add_argument('sample',help='Sample name')
 parser_trim.set_defaults(func=trim)
+
+parser_asmbl = subparsers.add_parser('assemble', help='Use minia to assemble reads',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser_asmbl.add_argument('sample',help='Sample name')
+parser_asmbl.set_defaults(func=asmbl)
 
 parser_all = subparsers.add_parser('all', help='Use trimmomatic to trim reads',formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser_all.add_argument('ref',help='Reference')
