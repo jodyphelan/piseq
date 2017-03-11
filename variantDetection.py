@@ -1,8 +1,29 @@
 #! /usr/bin/python
 import os
 import argparse
+import gzip
 
 scriptDir = os.path.dirname(os.path.realpath(__file__))
+
+
+def fastq2fasta(infile,outfile):
+	with open(outfile,"w") as o:
+		if infile[-3:] = ".gz":
+			f = gzip.open(infile,"rb")
+		else:
+			f = open(infile)
+		while True:
+			l1 = f.readline()
+			if l=="":
+				break
+			l2 = f.readline()
+			l3 = f.readline()
+			l4 = f.readline()
+			o.write(">%s%s" % (l1,l2)
+			
+
+
+####################### Main functions #############################
 
 def trim(args):
     sample = args.sample
