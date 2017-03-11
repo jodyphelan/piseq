@@ -8,7 +8,7 @@ scriptDir = os.path.dirname(os.path.realpath(__file__))
 
 def fastq2fasta(infile,outfile):
 	with open(outfile,"w") as o:
-		if infile[-3:] = ".gz":
+		if infile[-3:] == ".gz":
 			f = gzip.open(infile,"rb")
 		else:
 			f = open(infile)
@@ -19,7 +19,7 @@ def fastq2fasta(infile,outfile):
 			l2 = f.readline()
 			l3 = f.readline()
 			l4 = f.readline()
-			o.write(">%s%s" % (l1,l2)
+			o.write(">%s%s" % (l1,l2))
 			
 
 
