@@ -26,8 +26,7 @@ jobs:
           name: run tests
           command: |
             python variantDetection.py -h > /tmp/out/x.txt
-      - run: npm i circle-github-bot
-      - run: ./demo.js
+      - run: python bot.py
       - store_artifacts:
           path: /tmp/out
 
@@ -36,4 +35,3 @@ jobs:
       # other common Python testing frameworks include pytest and nose
       # https://pytest.org
       # https://nose.readthedocs.io
-
