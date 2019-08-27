@@ -26,7 +26,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            python variantDetection.py -h > /tmp/out
+            python variantDetection.py -h > /tmp/out/x.txt
       - store_artifacts:
           path: /tmp/out
 
