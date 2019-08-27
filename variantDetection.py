@@ -3,6 +3,7 @@ import os
 import argparse
 import gzip
 
+
 scriptDir = os.path.dirname(os.path.realpath(__file__))
 
 
