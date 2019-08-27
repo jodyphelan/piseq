@@ -21,12 +21,14 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - run: |
-          mkdir /tmp/out
+      - run: mkdir /tmp/out
       - run:
           name: run tests
           command: |
             python variantDetection.py -h > /tmp/out/x.txt
+      - run: npm install
+      - run: npm run build
+      - run: ./demo.js
       - store_artifacts:
           path: /tmp/out
 
