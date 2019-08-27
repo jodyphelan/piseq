@@ -21,12 +21,14 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-
+      - run: |
+          mkdir /tmp/out
       - run:
           name: run tests
           command: |
-            python variantDetection.py -h
-
+            python variantDetection.py -h > /tmp/out
+      - store_artifacts:
+          path: /tmp/out
 
       # run tests!
       # this example uses Django's built-in test-runner
