@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.6.7
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -21,12 +21,13 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - run: |
-          mkdir /tmp/out
+      - run: mkdir /tmp/out
       - run:
           name: run tests
           command: |
             python variantDetection.py -h > /tmp/out/x.txt
+      - run: pip install --user PyGithub
+      - run: python bot.py
       - store_artifacts:
           path: /tmp/out
 
@@ -35,4 +36,3 @@ jobs:
       # other common Python testing frameworks include pytest and nose
       # https://pytest.org
       # https://nose.readthedocs.io
-
